@@ -30,6 +30,7 @@ try:
     log("config loaded")
 except:
     log("no config found loading default")
+    version = "0.0.0"
 
 def saveconfig():
     configfile="version="+str(version)+"\n"
