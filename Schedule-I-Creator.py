@@ -31,14 +31,6 @@ try:
 except:
     log("no config found loading default")
     version = 0
-def saveconfig():
-    configfile="version="+str(version)+"\n"
-    log("new config\n\n"+configfile)
-    file= open(path+"\\config.py", "w")
-    log("writing config file")
-    file.write(configfile)
-    log("sucsessfuly wrote config file")
-log("registerd function saveconfig")
 log("checking version")
 if version != latestversion:
     log("new version found")
@@ -47,6 +39,14 @@ if version != latestversion:
         os.system("python "+path+"\\updater.py")
         log("updating")
         version=latestversion
+def saveconfig():
+    configfile="version="+str(version)+"\n"
+    log("new config\n\n"+configfile)
+    file= open(path+"\\config.py", "w")
+    log("writing config file")
+    file.write(configfile)
+    log("sucsessfuly wrote config file")
+log("registerd function saveconfig")        
 saveconfig()
 root = tk.Tk()
 img = ImageTk.PhotoImage(Image.open(io.BytesIO(base64.b64decode(imagelib.appimg))))
