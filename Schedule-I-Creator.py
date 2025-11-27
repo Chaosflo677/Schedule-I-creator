@@ -1,7 +1,7 @@
 import os, datetime, base64, io, sys
 import tkinter as tk
 from PIL import ImageTk, Image
-path=os.getcwd()
+path=os.getcwd()+"\\SICreator\\"
 def newlog():
     open(path+"\\old.log","w")
     open(path+"\\latest.log","w")
