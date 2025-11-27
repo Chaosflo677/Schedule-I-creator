@@ -44,6 +44,7 @@ def saveconfig():
 log("registerd function saveconfig")
 log("checking version")
 if version != latestversion:
+    print(version)
     log("new version found")
     answer=ctypes.windll.user32.MessageBoxW(0, "would you like to update?", "not latest version", 4)
     if answer == 6:
