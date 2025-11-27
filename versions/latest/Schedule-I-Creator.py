@@ -1,4 +1,4 @@
-import os, datetime, base64, io, sys, ctypes, requests, subprocess
+import os, datetime, base64, io, sys
 import tkinter as tk
 from PIL import ImageTk, Image
 path=os.getcwd()
@@ -23,17 +23,14 @@ except:
     log("terminating...")
     sys.exit("no imagelib")
 global version
-checkversion=requests.get("https://raw.githubusercontent.com/Chaosflo677/Schedule-I-creator/main/latest-version").content
-open(path+"\\temp", 'wb').write(checkversion)
-latestversion=open(path+"\\temp", 'r').read().strip()
-os.remove(path+"\\temp")
+
 try:
     import config
     version = config.version
     log("config loaded")
 except:
     log("no config found loading default")
-    version = "0"
+
 def saveconfig():
     configfile="version="+str(version)+"\n"
     log("new config\n\n"+configfile)
@@ -42,15 +39,10 @@ def saveconfig():
     file.write(configfile)
     log("sucsessfuly wrote config file")
 log("registerd function saveconfig")
-print(version == latestversion)
-log("checking version")
-if version != latestversion:
-    log("new version found")
-    answer=ctypes.windll.user32.MessageBoxW(0, "would you like to update?", "not latest version", 4)
-    if answer == 6:
-        os.system("python "+path+"\\updater.py")
-        log("updating")
-        version=latestversion
+def update():
+    os.system("python "+path+"\\updater.py")
+    log("updating")
+log("registerd function update")
 saveconfig()
 root = tk.Tk()
 img = ImageTk.PhotoImage(Image.open(io.BytesIO(base64.b64decode(imagelib.appimg))))
