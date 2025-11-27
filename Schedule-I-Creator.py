@@ -23,7 +23,7 @@ except:
     log("terminating...")
     sys.exit("no imagelib")
 global version
-latestversion=requests.get("https://raw.githubusercontent.com/Chaosflo677/Schedule-I-creator/refs/heads/main/latest-version")
+latestversion=requests.get("https://raw.githubusercontent.com/Chaosflo677/Schedule-I-creator/refs/heads/main/latest-version", allow_redirects=True)
 try:
     import config
     version = config.version
@@ -31,6 +31,14 @@ try:
 except:
     log("no config found loading default")
     version = 0
+def saveconfig():
+    configfile="version="+str(version)+"\n"
+    log("new config\n\n"+configfile)
+    file= open(path+"\\config.py", "w")
+    log("writing config file")
+    file.write(configfile)
+    log("sucsessfuly wrote config file")
+log("registerd function saveconfig")
 log("checking version")
 if version != latestversion:
     log("new version found")
@@ -39,14 +47,6 @@ if version != latestversion:
         os.system("python "+path+"\\updater.py")
         log("updating")
         version=latestversion
-def saveconfig():
-    configfile="version="+str(version)+"\n"
-    log("new config\n\n"+configfile)
-    file= open(path+"\\config.py", "w")
-    log("writing config file")
-    file.write(configfile)
-    log("sucsessfuly wrote config file")
-log("registerd function saveconfig")        
 saveconfig()
 root = tk.Tk()
 img = ImageTk.PhotoImage(Image.open(io.BytesIO(base64.b64decode(imagelib.appimg))))
