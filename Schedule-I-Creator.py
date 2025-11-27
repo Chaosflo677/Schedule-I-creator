@@ -23,7 +23,7 @@ except:
     log("terminating...")
     sys.exit("no imagelib")
 global version
-latestversion=requests.get("https://raw.githubusercontent.com/Chaosflo677/Schedule-I-creator/main/latest-version")
+latestversion=requests.get("https://raw.githubusercontent.com/Chaosflo677/Schedule-I-creator/main/latest-version").content
 try:
     import config
     version = config.version
