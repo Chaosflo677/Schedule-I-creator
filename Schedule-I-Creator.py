@@ -25,7 +25,7 @@ except:
 global version
 checkversion=requests.get("https://raw.githubusercontent.com/Chaosflo677/Schedule-I-creator/main/latest-version").content
 open(path+"\\temp", 'wb').write(checkversion)
-latestversion=open(path+"\\temp", 'r').read().strip("\n")
+latestversion=open(path+"\\temp", 'r').read().strip()
 os.remove(path+"\\temp")
 try:
     import config
@@ -33,7 +33,7 @@ try:
     log("config loaded")
 except:
     log("no config found loading default")
-    version = 0
+    version = "0"
 def saveconfig():
     configfile="version="+str(version)+"\n"
     log("new config\n\n"+configfile)
@@ -42,6 +42,7 @@ def saveconfig():
     file.write(configfile)
     log("sucsessfuly wrote config file")
 log("registerd function saveconfig")
+print(version == latestversion)
 log("checking version")
 if version != latestversion:
     log("new version found")
