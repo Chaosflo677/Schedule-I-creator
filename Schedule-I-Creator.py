@@ -25,7 +25,7 @@ except:
 global version
 checkversion=requests.get("https://raw.githubusercontent.com/Chaosflo677/Schedule-I-creator/main/latest-version").content
 open(path+"\\temp", 'wb').write(checkversion)
-latestversion=open(path+"\\temp", 'r').read()
+latestversion=open(path+"\\temp", 'r').read().strip("\n")
 os.remove(path+"\\temp")
 try:
     import config
@@ -44,7 +44,6 @@ def saveconfig():
 log("registerd function saveconfig")
 log("checking version")
 if version != latestversion:
-    print(version)
     log("new version found")
     answer=ctypes.windll.user32.MessageBoxW(0, "would you like to update?", "not latest version", 4)
     if answer == 6:
