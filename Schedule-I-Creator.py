@@ -39,12 +39,15 @@ def saveconfig():
     file.write(configfile)
     log("sucsessfuly wrote config file")
 log("registerd function saveconfig")
-saveconfig()
+log("checking version")
 if version != latestversion:
+    log("new version found")
     answer=ctypes.windll.user32.MessageBoxW(0, "would you like to update?", "not latest version", 4)
     if answer == 6:
         os.system("python "+path+"\\updater.py")
-    
+        log("updating")
+        version=latestversion
+saveconfig()
 root = tk.Tk()
 img = ImageTk.PhotoImage(Image.open(io.BytesIO(base64.b64decode(imagelib.appimg))))
 root.wm_iconphoto(False, img)

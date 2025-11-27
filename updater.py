@@ -7,5 +7,5 @@ sourcerepo="https://raw.githubusercontent.com/Chaosflo677/Schedule-I-creator/mai
 def getfile(file):
     r = requests.get(sourcerepo+file+".py", allow_redirects=True)
     open(file+".py", 'wb').write(r.content)
-getfile("imagelib.py")
-getfile("Schedule-I-Creator.py")
+getfile("imagelib")
+getfile("Schedule-I-Creator")
